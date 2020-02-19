@@ -18,3 +18,25 @@ Cette commande lance les deux containers (Symphony et MariaDB)
 10) Browser l'url : http://localhost:8001/
 11) votre espace de travail est à présent dans le dossier myapp
 
+## Installation de Symfony
+Installer les paquets PHP :
+```bash
+$> composer install
+```
+
+## Installation de la BDD
+Vérifier que la variable d'environnement `DATABASE_URL` est bien définie.
+Pour Docker, utiliser :
+```text
+DATABASE_URL=mysql://root@mariadb:3306/bitnami_myapp
+```
+
+Si vous n'avez pas encore la base, créez la:
+```bash
+$> php bin/console doctrine:database:create
+```
+
+Jouer les migrations :
+```bash
+$> php bin/console doctrine:migrations:migrate
+```
