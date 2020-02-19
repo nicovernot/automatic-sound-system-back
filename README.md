@@ -2,6 +2,7 @@
 
 
 ## Pré-requis
+- installer docker sur votre machine
 
 ## installation du Workspace de dev
 1) Créer un repertoire `automatic-sound-system-back` dans votre workspace.
