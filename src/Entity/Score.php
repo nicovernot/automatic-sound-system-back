@@ -4,13 +4,13 @@
 namespace App\Entity;
 
 
-use App\Model\UserModel;
+use App\Model\ScoreModel;;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ScoreRepository")
  */
-class User extends UserModel
+class Score extends ScoreModel
 {
     /**
      * @ORM\Id()
@@ -27,19 +27,19 @@ class User extends UserModel
      */
     protected $updatedAt;
     /**
-     * @ORM\Column(unique=true)
+     * @ORM\Column(type="integer")
      */
-    protected $email;
+    protected $scoreMax;
     /**
-     * @ORM\Column(length=50, unique=true)
+     * @ORM\Column(type="integer")
      */
-    protected $username;
+    protected $gameCount;
     /**
-     * @ORM\Column()
+     * @ORM\ManyToOne(targetEntity="User")
      */
-    protected $password;
+    protected $user;
     /**
-     * @ORM\Column(type="array")
+     * @ORM\ManyToOne(targetEntity="Playlist")
      */
-    protected $roles;
+    protected $playlist;
 }
