@@ -3,6 +3,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Model\UserModel;
@@ -36,6 +37,13 @@ class User extends UserModel
      * @ORM\Column(length=50, unique=true)
      */
     protected $username;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="UserSubscription", mappedBy="user", cascade={"remove"})
+     */
+    private $userSubscription;
+
     /**
      * @ORM\Column()
      */
