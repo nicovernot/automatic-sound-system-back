@@ -10,3 +10,7 @@ App\Entity\Chat:
             method: POST
             path: /chats
             controller: App\Controller\API\Chat\PostChatController
+        load:
+            method: GET
+            path: /chats/load
+            controller: App\Controller\API\Chat\LoadChatController
