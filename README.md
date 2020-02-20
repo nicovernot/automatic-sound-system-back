@@ -40,3 +40,9 @@ Jouer les migrations :
 ```bash
 $> php bin/console doctrine:migrations:migrate
 ```
+
+## Installation LexikJWT
+Installer les clés SSH pour LexikJWT.
+Pour cela, suivre la [doc du package](https://github.com/lexik/LexikJWTAuthenticationBundle/blob/master/Resources/doc/index.md#generate-the-ssh-keys).
+
+Nous stockerons la variable d'environnement `JWT_PASSPHRASE` contenant la phrase secrete pour les clés SSH. 
