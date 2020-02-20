@@ -26,18 +26,17 @@ class NotificationController extends AbstractController
      */
     public function registerSubscription(Request $request)
     {
-//        try {
-//            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-//            $user = $this->getUser();
-//        } catch (\Exception $e) {
-//            return JsonResponse::create([
-//                "code" => 401,
-//                "message" => "Authentication required",
-//            ], 401);
-//        }
+        try {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+            $user = $this->getUser();
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                "code" => 401,
+                "message" => "Authentication required",
+            ], 401);
+        }
 
         $entityManager = $this->getDoctrine()->getManager();
-        $user = $entityManager->getRepository(User::class)->find(1);
 
          $body = json_decode($request->getContent(), true);
 
@@ -80,18 +79,17 @@ class NotificationController extends AbstractController
      */
     public function unregisterSubscription(Request $request)
     {
-//        try {
-//            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-//            $user = $this->getUser();
-//        } catch (\Exception $e) {
-//            return JsonResponse::create([
-//                "code" => 401,
-//                "message" => "Authentication required",
-//            ], 401);
-//        }
+        try {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+            $user = $this->getUser();
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                "code" => 401,
+                "message" => "Authentication required",
+            ], 401);
+        }
 
         $entityManager = $this->getDoctrine()->getManager();
-        $user = $entityManager->getRepository(User::class)->find(1);
 
         try {
             $userSubscriptionList = $entityManager->getRepository(UserSubscription::class)->findByIds([$user->getId()]);
@@ -121,14 +119,14 @@ class NotificationController extends AbstractController
      */
     public function send(Request $request)
     {
-//        try {
-//            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-//        } catch (\Exception $e) {
-//            return JsonResponse::create([
-//                "code" => 401,
-//                "message" => "Authentication required",
-//            ], 401);
-//        }
+        try {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                "code" => 401,
+                "message" => "Authentication required",
+            ], 401);
+        }
 
         $body = json_decode($request->getContent(), true);
 
@@ -174,33 +172,33 @@ class NotificationController extends AbstractController
             $webPush->sendNotification(
                 $notification['subscription'],
                 $notification['payload'], // optional (defaults null)
-                true  //if set to true, notifications are flush without check result
+                false  //if set to true, notifications are flush without check result
             );
         }
 
 //        these line are for debug
-//        $notificationsStatus = [];
-//
-//        /**
-//         * Check sent results
-//         * @var MessageSentReport $report
-//         */
-//        foreach ($webPush->flush() as $report) {
-//            $endpoint = $report->getRequest()->getUri()->__toString();
-//
-//            if ($report->isSuccess()) {
-//                $notificationsStatus["success"][] = "[v] Message sent successfully for subscription {$endpoint}";
-//            } else {
-//                $notificationsStatus["error"][] = [
-//                    "message" => "[x] Message failed to sent for subscription {$endpoint}",
-//                    "reason" => "{$report->getReason()}"
-//                ];
-//            }
-//        }
+        $notificationsStatus = [];
+
+        /**
+         * Check sent results
+         * @var MessageSentReport $report
+         */
+        foreach ($webPush->flush() as $report) {
+            $endpoint = $report->getRequest()->getUri()->__toString();
+
+            if ($report->isSuccess()) {
+                $notificationsStatus["success"][] = "[v] Message sent successfully for subscription {$endpoint}";
+            } else {
+                $notificationsStatus["error"][] = [
+                    "message" => "[x] Message failed to sent for subscription {$endpoint}",
+                    "reason" => "{$report->getReason()}"
+                ];
+            }
+        }
 
         return JsonResponse::create([
             "code" => 200,
-//            "data" => $notificationsStatus,
+            "data" => $notificationsStatus,
         ], 200);
     }
 }
