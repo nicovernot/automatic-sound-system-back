@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Minishlink\WebPush\Subscription;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserSubscriptionRepository")
@@ -37,7 +38,7 @@ class UserSubscription
 
     /**
      * @var string
-     * @ORM\Column(type="string", name="auth_token", length=50, nullable=true)
+     * @ORM\Column(type="string", name="auth_token", length=255, nullable=true)
      */
     private $authToken;
 
@@ -129,8 +130,10 @@ class UserSubscription
     {
         return Subscription::create([
             "endpoint" => $this->endpoint,
-            "publicKey" => $this->publicKey,
-            "authToken" => $this->authToken,
+//            "publicKey" => $this->publicKey,
+//            "authToken" => $this->authToken,
+            "publicKey" => $this->authToken,
+            "authToken" => $this->publicKey,
         ]);
     }
 }
