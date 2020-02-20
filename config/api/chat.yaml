@@ -1,0 +1,16 @@
+App\Entity\Chat:
+    attributes:
+        security: 'is_granted("ROLE_USER")'
+        normalization_context:
+            groups: ['chat_read']
+        denormalization_context:
+            groups: ['chat_write']
+    collectionOperations:
+        create:
+            method: POST
+            path: /chats
+            controller: App\Controller\API\Chat\PostChatController
+        load:
+            method: GET
+            path: /chats/load
+            controller: App\Controller\API\Chat\LoadChatController
