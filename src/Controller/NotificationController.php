@@ -36,7 +36,8 @@ class NotificationController extends AbstractController
 //            ], 401);
 //        }
 
-        $user = $this->getDoctrine()->getRepository(User::class)->find(1);
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(User::class)->find(1);
 
          $body = json_decode($request->getContent(), true);
 
@@ -57,9 +58,47 @@ class NotificationController extends AbstractController
             $userSubscription->setAuthToken($keys["p256dh"]);
             $userSubscription->setPublicKey($keys["auth"]);
 
-            $entityManager = $this->getDoctrine()->getManager();
-
             $entityManager->persist($userSubscription);
+            $entityManager->flush();
+
+            return JsonResponse::create([
+                "code" => 200,
+            ], 200);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                "code" => 500,
+                "" => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     *
+     * @Route("/unregister/", name="api_notification_unregister", methods={"DELETE"})
+     */
+    public function unregisterSubscription(Request $request)
+    {
+//        try {
+//            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+//            $user = $this->getUser();
+//        } catch (\Exception $e) {
+//            return JsonResponse::create([
+//                "code" => 401,
+//                "message" => "Authentication required",
+//            ], 401);
+//        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(User::class)->find(1);
+
+        try {
+            $userSubscriptionList = $entityManager->getRepository(UserSubscription::class)->findByIds([$user->getId()]);
+            foreach ($userSubscriptionList as $userSubscription) {
+                $entityManager->remove($userSubscription);
+            }
+
             $entityManager->flush();
 
             return JsonResponse::create([
