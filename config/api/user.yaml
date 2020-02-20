@@ -1,0 +1,14 @@
+App\Entity\User:
+    attributes:
+        security: 'is_granted("ROLE_USER")'
+        normalization_context:
+            groups: ['user_read']
+    itemOperations:
+        get_current:
+            method: GET
+            path: /users/current
+            controller: App\Controller\API\User\CurrentUserController
+            read: false
+        get: ~
+    collectionOperations:
+        get: ~
