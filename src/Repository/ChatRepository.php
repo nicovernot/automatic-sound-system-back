@@ -18,4 +18,34 @@ class ChatRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Chat::class);
     }
+
+    public function findForLoad(): array
+    {
+        $queryBuilder = $this->createQueryBuilder('chat');
+
+        $queryBuilder->setMaxResults(5);
+
+        $query = $queryBuilder->getQuery();
+        $result = $query->getResult();
+
+        return $result;
+    }
+
+    public function findAfter(\DateTime $dateTime): array
+    {
+        $queryBuilder = $this->createQueryBuilder('chat');
+        $expr = $queryBuilder->expr();
+
+        $str = $dateTime->format('Y/m/d H:i:s');
+
+        $queryBuilder
+            ->where($expr->gte('chat.createdAt', ':after'))
+            ->setParameter('after', $str)
+        ;
+
+        $query = $queryBuilder->getQuery();
+        $result = $query->getResult();
+
+        return $result;
+    }
 }
