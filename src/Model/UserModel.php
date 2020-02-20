@@ -14,6 +14,8 @@ class UserModel extends AbstractUpdatableModel implements UserInterface
     protected $email;
     /** @var null|string $password */
     protected $password;
+    /** @var null|string $plainPassword */
+    protected $plainPassword;
     /** @var array $roles */
     protected $roles;
 
@@ -75,6 +77,24 @@ class UserModel extends AbstractUpdatableModel implements UserInterface
     public function setPassword(?string $password): UserModel
     {
         $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string|null $plainPassword
+     * @return self
+     */
+    public function setPlainPassword(?string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
         return $this;
     }
 

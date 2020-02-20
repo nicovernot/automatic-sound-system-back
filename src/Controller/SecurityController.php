@@ -2,38 +2,41 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
+use App\Service\Entity\UserService;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationSuccessHandler;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/security", name="security")
+     * @Route(path="/register", methods={"POST"})
      */
-    public function index()
+    public function register(Request $request, ValidatorInterface $validator, AuthenticationSuccessHandler $handler, UserService $service)
     {
-        return $this->render('security/index.html.twig', [
-            'controller_name' => 'SecurityController',
-        ]);
-    }
+        $user = $service->createFromRequest($request);
 
-    /**
-     * @Route("/login", name="login", methods={"POST"})
-     */
-    public function login(Request $request)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $user = $this->getDoctrine()
-        ->getRepository(User::class)
-        ->findOneBy(['email' =>  $request->request->get('username')]);
-        
-           
-        return $this->json([
-            'email' => $user->getEmail(),
-            'roles' => $user->getRoles(),
-        ]);
+        if (!$service->add($user)) {
+            $errors = $validator->validate($user);
+
+            if (count($errors) > 0) {
+                return $this->json([
+                    'errors' => (string)$errors
+                ], Response::HTTP_BAD_REQUEST);
+            }
+
+            return $this->json([], Response::HTTP_BAD_REQUEST);
+        }
+
+        return $handler->handleAuthenticationSuccess($user);
     }
 }
