@@ -4,18 +4,25 @@ namespace App\Controller\API\User;
 
 
 use App\Controller\API\AbstractController;
+use App\Entity\User;
 use App\Service\Entity\UserService;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\Security;
 
 abstract class AbstractUserController extends AbstractController
 {
+    /** @var UserService $service */
     protected $service;
 
-    public function __construct(Security $security, RequestStack $requestStack, UserService $userService)
+    /**
+     * @param UserService $service
+     * @required
+     */
+    public function setService(UserService $service): void
     {
-        $this->service  = $userService;
+        $this->service = $service;
+    }
 
-        parent::__construct($security, $requestStack);
+    public function getEntityClassName(): string
+    {
+        return User::class;
     }
 }

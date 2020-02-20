@@ -4,36 +4,72 @@ namespace App\Controller\API;
 
 
 use App\Entity\User;
+use App\Service\Traits\DynamicFunctionCallTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Security;
 
+/**
+ * Class AbstractController
+ * @package App\Controller\API
+ *
+ * @method User|null getUser(): ?UserInterface
+ * @method Request getCurrentRequest(): Request
+ * @method mixed get(string $key)
+ */
 abstract class AbstractController
 {
+    use DynamicFunctionCallTrait;
+
+    /** @var RequestStack $requestStack */
     protected $requestStack;
+    /** @var Security $security */
     protected $security;
 
-    public function __construct(Security $security, RequestStack $requestStack)
+    //region AUTO WIRING
+
+    /**
+     * @param RequestStack $requestStack
+     * @required
+     */
+    public function setRequestStack(RequestStack $requestStack): void
     {
         $this->requestStack = $requestStack;
+    }
+
+    /**
+     * @param Security $security
+     * @required
+     */
+    public function setSecurity(Security $security): void
+    {
         $this->security = $security;
     }
+    //endregion
 
-    protected function getUser(): User
+    /**
+     * @return RequestStack
+     */
+    public function getRequestStack(): RequestStack
     {
-        /** @var User $user */
-        $user = $this->security->getUser();
-
-        return $user;
+        return $this->requestStack;
     }
 
-    protected function getRequest(): Request
+    /**
+     * @return Security
+     */
+    public function getSecurity(): Security
     {
-        return $this->requestStack->getCurrentRequest();
+        return $this->security;
     }
 
-    protected function get(string $parameterName)
+    function setMapDynamicFunctions(): void
     {
-        return $this->getRequest()->get($parameterName);
+        $this
+            ->addDynamicFunction('getUser', [$this, 'getUser'])
+            ->addDynamicFunction('getCurrentRequest', [$this, 'getRequestStack'])
+            ->addDynamicFunction('get', [$this, 'getCurrentRequest']);
     }
+
+    abstract public function getEntityClassName(): string;
 }
