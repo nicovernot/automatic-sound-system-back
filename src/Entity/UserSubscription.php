@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class UserSubscription
 {
     /**
+     * @var int|null $id
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -25,19 +26,19 @@ class UserSubscription
     private $user;
 
     /**
-     * @var string
+     * @var string|null $endpoint
      * @ORM\Column(type="string", name="endpoint", length=255, nullable=true)
      */
     private $endpoint;
 
     /**
-     * @var string
+     * @var string|null $publicKey
      * @ORM\Column(type="string", name="public_key", length=255, nullable=true)
      */
     private $publicKey;
 
     /**
-     * @var string
+     * @var string|null $authToken
      * @ORM\Column(type="string", name="auth_token", length=255, nullable=true)
      */
     private $authToken;
@@ -75,51 +76,57 @@ class UserSubscription
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEndpoint(): string
+    public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
 
     /**
-     * @param string $endpoint
+     * @param string|null $endpoint
+     * @return UserSubscription
      */
-    public function setEndpoint(string $endpoint): void
+    public function setEndpoint(?string $endpoint): UserSubscription
     {
         $this->endpoint = $endpoint;
+        return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPublicKey(): string
+    public function getPublicKey(): ?string
     {
         return $this->publicKey;
     }
 
     /**
-     * @param string $publicKey
+     * @param string|null $publicKey
+     * @return UserSubscription
      */
-    public function setPublicKey(string $publicKey): void
+    public function setPublicKey(?string $publicKey): UserSubscription
     {
         $this->publicKey = $publicKey;
+        return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAuthToken(): string
+    public function getAuthToken(): ?string
     {
         return $this->authToken;
     }
 
     /**
-     * @param string $authToken
+     * @param string|null $authToken
+     * @return UserSubscription
      */
-    public function setAuthToken(string $authToken): void
+    public function setAuthToken(?string $authToken): UserSubscription
     {
         $this->authToken = $authToken;
+        return $this;
     }
 
     /**
