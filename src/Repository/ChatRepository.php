@@ -39,7 +39,7 @@ class ChatRepository extends ServiceEntityRepository
         $str = $dateTime->format('Y/m/d H:i:s');
 
         $queryBuilder
-            ->where($expr->gte('chat.createdAt', ':after'))
+            ->where($expr->gt('chat.createdAt', ':after'))
             ->setParameter('after', $str)
         ;
 

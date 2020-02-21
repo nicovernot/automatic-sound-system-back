@@ -1,0 +1,3 @@
+App\Entity\Playlist:
+    attributes:
+        security: 'is_granted("ROLE_USER")'
