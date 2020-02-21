@@ -28,9 +28,13 @@ class HomeController extends AbstractController
      */
     public function playlist(Request $request)
     {
-           $client1 = HttpClient::create();
+            $client1 = HttpClient::create();
             $apiKey = "AIzaSyB7CdRuc8guFqf0plkQc826nsEvINljutQ";
             $playlist_id =  $request->query->get('playlist'); 
+            if ($playlist_id==""){
+                return $this->json(['erreur' => 'Vous n\'avez pas rentré le code plyalist']);
+                exit;
+            }
             $api_url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId='.$playlist_id . '&key='.$apiKey;
                   
             $playlist = $client1->request('GET',$api_url);
@@ -47,11 +51,8 @@ class HomeController extends AbstractController
                array_push($pl_array, $plline);
                $plline=[];
             }
+
             return $this->json(['playlist' => $pl_array]);
-      //  return $this->render('home/playlist.html.twig', [
-     //       'controller_name' => 'HomeController',
-     //       "playlist" => $playlist,
-     //   ]);
     }
 
 
@@ -61,6 +62,10 @@ class HomeController extends AbstractController
     public function singlevideo(Request $request)
     {
         $search=$request->query->get('search');
+        if ($search==""){
+            return $this->json(['erreur' => 'Vous n\'avez pas rentré de mot clé']);
+            exit;
+        }
         $apiKey = "AIzaSyB7CdRuc8guFqf0plkQc826nsEvINljutQ";
         $client = new \Google_Client();
         $client -> setDeveloperKey($apiKey);
@@ -77,6 +82,8 @@ class HomeController extends AbstractController
            array_push($pl_array, $plline);
            $plline=[];
         }
+
+        
         return $this->json(['videolist' => $pl_array]);
       
     }
