@@ -3,6 +3,8 @@ version: '2'
 services:
   myapp:
     image: 'bitnami/symfony:1'
+    expose:
+      - 8000
     ports:
       - '8001:8000'
     volumes:
@@ -13,3 +15,21 @@ services:
     image: 'bitnami/mariadb:10.3'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
+  nginx:
+    build: ./nginx
+    expose:
+      - 80
+      - 443
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/conf/vhost:/etc/nginx/vhost
+      - ./nginx/conf/upstream:/etc/nginx/upstream
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf/proxy.conf:/etc/nginx/proxy.conf
+      - ./nginx/certificats:/etc/nginx/certificats
+    depends_on:
+      - myapp
+    container_name: nginx
