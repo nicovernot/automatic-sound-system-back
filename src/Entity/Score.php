@@ -6,9 +6,11 @@ namespace App\Entity;
 
 use App\Model\ScoreModel;;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ScoreRepository")
+ * @UniqueEntity(fields={"user", "playlist"})
  */
 class Score extends ScoreModel
 {
