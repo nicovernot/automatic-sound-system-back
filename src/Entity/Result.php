@@ -6,9 +6,11 @@ namespace App\Entity;
 
 use App\Model\ResultModel;;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ResultRepository")
+ * @UniqueEntity(fields={"playlist", "track"})
  */
 class Result extends ResultModel
 {

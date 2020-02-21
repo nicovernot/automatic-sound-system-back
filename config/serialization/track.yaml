@@ -1,0 +1,12 @@
+App\Entity\Track:
+  attributes:
+    id:
+      groups: ['track_read']
+    createdAt:
+      groups: ['track_read']
+    thumbnails:
+      groups: ['track_read']
+    YTTitle:
+      groups: ['track_read']
+    YTUrlId:
+      groups: ['track_read']
