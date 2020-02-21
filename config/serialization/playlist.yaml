@@ -1,0 +1,12 @@
+App\Entity\Playlist:
+  attributes:
+    id:
+      groups: ['playlist_read']
+    createdAt:
+      groups: ['playlist_read']
+    name:
+      groups: ['playlist_read', 'playlist_write']
+    scoreMax:
+      groups: ['playlist_read', 'playlist_write']
+    results:
+      groups: ['playlist_read', 'playlist_write']

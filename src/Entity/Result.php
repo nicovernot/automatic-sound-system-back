@@ -33,7 +33,7 @@ class Result extends ResultModel
      */
     protected $singer;
     /**
-     * @ORM\ManyToOne(targetEntity="Playlist")
+     * @ORM\ManyToOne(targetEntity="Playlist", inversedBy="results")
      */
     protected $playlist;
     /**
