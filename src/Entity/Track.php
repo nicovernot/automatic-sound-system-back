@@ -7,10 +7,12 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Model\TrackModel;;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\TrackRepository")
+ * @UniqueEntity("YTUrlId")
  */
 class Track extends TrackModel
 {
@@ -29,11 +31,11 @@ class Track extends TrackModel
      */
     protected $thumbnails;
     /**
-     * @ORM\Column()
+     * @ORM\Column(name="yttitle", )
      */
-    protected $YTTitle;
+    protected $yTTitle;
     /**
-     * @ORM\Column()
+     * @ORM\Column(name="yturl_id", unique=true)
      */
-    protected $YTUrlId;
+    protected $yTUrlId;
 }
