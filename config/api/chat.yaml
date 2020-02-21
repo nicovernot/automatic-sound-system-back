@@ -14,3 +14,5 @@ App\Entity\Chat:
             method: GET
             path: /chats/load
             controller: App\Controller\API\Chat\LoadChatController
+    itemOperations:
+        get: ~
