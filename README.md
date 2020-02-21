@@ -1,48 +1,14 @@
-# BackendMusicass 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/538d51c8-8b82-475c-ae96-436f71e5fced/deploy-status)](https://app.netlify.com/sites/musicass/deploys)
 
-
-## Pré-requis
-- installer docker sur votre machine
-
-## installation du Workspace de dev
-1) Créer un repertoire `automatic-sound-system-back` dans votre workspace.
-2) Déposer dans le dossier précédement créé le fichier `/dockerfile/docker-compose.yml`.
-3) Effectuer la commande suivante: `docker-compose up -d`
-Cette commande lance les deux containers (Symphony et MariaDB)
-4) Une fois le processus terminé (le dossier `myapp` est présent et rempli), supprimmer le dossier `myapp` : `rm -rf myapp/`
-5) Cloner le repo dans un dossier `myapp` : `git clone git@github.com:nicovernot/automatic-sound-system-back.git myapp`.
-6) Effectuer la commande suivante: docker ps -a afin de récuperer l id du container symphony
-7) Effectuer la commande suivante: docker start {id_container_symphony}
-8) Puis : docker exec -it {id_container_symphony} /bin/bash 
-9) Puis dans le promt Docker : cd myapp/ puis composer install
-10) Browser l'url : http://localhost:8001/
-11) votre espace de travail est à présent dans le dossier myapp
-
-## Installation de Symfony
-Installer les paquets PHP :
-```bash
-$> composer install
-```
-
-## Installation de la BDD
-Vérifier que la variable d'environnement `DATABASE_URL` est bien définie.
-Pour Docker, utiliser :
-```text
-DATABASE_URL=mysql://root@mariadb:3306/bitnami_myapp
-```
-
-Si vous n'avez pas encore la base, créez la:
-```bash
-$> php bin/console doctrine:database:create
-```
-
-Jouer les migrations :
-```bash
-$> php bin/console doctrine:migrations:migrate
-```
-
-## Installation LexikJWT
-Installer les clés SSH pour LexikJWT.
-Pour cela, suivre la [doc du package](https://github.com/lexik/LexikJWTAuthenticationBundle/blob/master/Resources/doc/index.md#generate-the-ssh-keys).
-
-Nous stockerons la variable d'environnement `JWT_PASSPHRASE` contenant la phrase secrete pour les clés SSH. 
+# Sommaire
+1. [Home](https://github.com/pierrebarbin/automatic-sound-system-front/wiki)
+2. [Configuration Postman](https://github.com/pierrebarbin/automatic-sound-system-front/wiki/Configuration-Postman)
+3. [Gameplay](https://github.com/pierrebarbin/automatic-sound-system-front/wiki/Gameplay)
+4. [Installation du backend](https://github.com/pierrebarbin/automatic-sound-system-front/wiki/Installation-du-backend)
+5. [Librairies](https://github.com/pierrebarbin/automatic-sound-system-front/wiki/Librairies)
+6. [Manuel de jeu](https://github.com/pierrebarbin/automatic-sound-system-front/wiki/Manuel-de-jeu)
+7. [Modèle de données](https://github.com/pierrebarbin/automatic-sound-system-front/wiki/Mod%C3%A8le-de-donn%C3%A9es)
+8. [Spécification](https://github.com/pierrebarbin/automatic-sound-system-front/wiki/Sp%C3%A9cifications)
+9. [Structure du projet](https://github.com/pierrebarbin/automatic-sound-system-front/wiki/Structure-du-projet)
+10. [Swagger](https://github.com/pierrebarbin/automatic-sound-system-front/wiki/Swagger)
+11. [Equipe](https://github.com/pierrebarbin/automatic-sound-system-front/wiki/%C3%89quipe)
