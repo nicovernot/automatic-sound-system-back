@@ -66,7 +66,7 @@ abstract class AbstractController
     function setMapDynamicFunctions(): void
     {
         $this
-            ->addDynamicFunction('getUser', [$this, 'getUser'])
+            ->addDynamicFunction('getUser', [$this, 'getSecurity'])
             ->addDynamicFunction('getCurrentRequest', [$this, 'getRequestStack'])
             ->addDynamicFunction('get', [$this, 'getCurrentRequest']);
     }
