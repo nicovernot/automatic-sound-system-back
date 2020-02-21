@@ -1,3 +1,5 @@
+[![Build Status](https://cloud.drone.io/api/badges/nicovernot/automatic-sound-system-back/status.svg)](https://cloud.drone.io/nicovernot/automatic-sound-system-back)
+
 # BackendMusicass 
 
 

@@ -2,6 +2,9 @@ kind: pipeline
 type: exec
 name: default
 
+clone:
+  disable: true
+
 platform:
   os: linux
   arсh: amd64
@@ -9,8 +12,12 @@ platform:
 steps:
   - name: pullRepo
     commands:
+      - cd /home/ec2-user/myapp/myapp
       - echo `pwd` > /tmp/TOTO.txt
 
 trigger:
   branch:
     - feature/droneCI
+    #- master
+  #event:
+    #- tag
