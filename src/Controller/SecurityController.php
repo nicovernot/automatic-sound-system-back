@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route(path="/register", methods={"POST"})
+     * @Route(path="/api/register", methods={"POST"})
      */
     public function register(Request $request, ValidatorInterface $validator, AuthenticationSuccessHandler $handler, UserService $service)
     {
