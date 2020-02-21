@@ -17,16 +17,16 @@ security:
             stateless: true
             anonymous: true
         register:
-            pattern:  ^/register
+            pattern:  ^/api/register
             stateless: true
             anonymous: true
         login:
-            pattern:  ^/login
+            pattern:  ^/api/login
             stateless: true
             anonymous: true
             provider: app_user_provider
             json_login:
-                check_path:      /login
+                check_path:      /api/login
                 username_path:   email
                 password_path:   plainPassword
                 success_handler: lexik_jwt_authentication.handler.authentication_success
@@ -40,7 +40,7 @@ security:
                     - lexik_jwt_authentication.jwt_token_authenticator
 
     access_control:
-        - { path: ^/login,      roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register,   roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/login,      roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/register,   roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api$,       roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/,       roles: IS_AUTHENTICATED_FULLY }
