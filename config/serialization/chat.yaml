@@ -2,7 +2,7 @@ App\Entity\Chat:
   attributes:
     id:
       groups: ['chat_read']
-    created_at:
+    createdAt:
       groups: ['chat_read']
     message:
       groups: ['chat_read', 'chat_write']

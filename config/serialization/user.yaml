@@ -6,7 +6,7 @@ App\Entity\User:
       groups: ['user_read']
     username:
       groups: ['user_read', 'chat_read']
-    created_at:
+    createdAt:
       groups: ['user_read']
-    updated_at:
+    updatedAt:
       groups: ['user_read']
