@@ -39,10 +39,9 @@ class User extends UserModel
     protected $username;
 
     /**
-     * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="UserSubscription", mappedBy="user", cascade={"remove"})
      */
-    private $userSubscription;
+    protected $userSubscription;
 
     /**
      * @ORM\Column()

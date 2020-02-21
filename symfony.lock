@@ -95,32 +95,14 @@
     "doctrine/reflection": {
         "version": "v1.1.0"
     },
+    "fgrosse/phpasn1": {
+        "version": "v2.1.1"
+    },
     "fig/link-util": {
         "version": "1.1.0"
     },
-    "firebase/php-jwt": {
-        "version": "v5.0.0"
-    },
     "fzaninotto/faker": {
         "version": "v1.9.1"
-    },
-    "google/apiclient": {
-        "version": "2.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "2.0",
-            "ref": "49c5d7a66d863d28513979bf0666dc77599100c0"
-        },
-        "files": [
-            "config/packages/google_apiclient.yaml"
-        ]
-    },
-    "google/apiclient-services": {
-        "version": "v0.127"
-    },
-    "google/auth": {
-        "version": "v1.7.1"
     },
     "guzzlehttp/guzzle": {
         "version": "6.5.2"
@@ -181,8 +163,8 @@
             "config/packages/lexik_jwt_authentication.yaml"
         ]
     },
-    "monolog/monolog": {
-        "version": "2.0.2"
+    "minishlink/web-push": {
+        "version": "v5.2.4"
     },
     "myclabs/deep-copy": {
         "version": "1.9.5"
@@ -224,6 +206,9 @@
     "ocramius/proxy-manager": {
         "version": "2.2.3"
     },
+    "paragonie/sodium_compat": {
+        "version": "v1.12.2"
+    },
     "php": {
         "version": "7.3"
     },
@@ -235,9 +220,6 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.0.1"
-    },
-    "phpseclib/phpseclib": {
-        "version": "2.0.23"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -271,6 +253,9 @@
     },
     "sebastian/recursion-context": {
         "version": "3.0.0"
+    },
+    "spomky-labs/base64url": {
+        "version": "v2.0.1"
     },
     "symfony/asset": {
         "version": "v5.0.4"
@@ -382,23 +367,6 @@
     },
     "symfony/mime": {
         "version": "v5.0.4"
-    },
-    "symfony/monolog-bridge": {
-        "version": "v5.0.4"
-    },
-    "symfony/monolog-bundle": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "877bdb4223245783d00ed1f7429aa7ebc606d914"
-        },
-        "files": [
-            "config/packages/dev/monolog.yaml",
-            "config/packages/prod/monolog.yaml",
-            "config/packages/test/monolog.yaml"
-        ]
     },
     "symfony/orm-pack": {
         "version": "v1.0.7"
@@ -538,6 +506,33 @@
     },
     "twig/twig": {
         "version": "v3.0.2"
+    },
+    "web-token/jwt-core": {
+        "version": "v1.3.9"
+    },
+    "web-token/jwt-key-mgmt": {
+        "version": "v1.3.9"
+    },
+    "web-token/jwt-signature": {
+        "version": "v1.3.9"
+    },
+    "web-token/jwt-signature-algorithm-ecdsa": {
+        "version": "v1.3.9"
+    },
+    "web-token/jwt-signature-algorithm-eddsa": {
+        "version": "v1.3.9"
+    },
+    "web-token/jwt-signature-algorithm-hmac": {
+        "version": "v1.3.9"
+    },
+    "web-token/jwt-signature-algorithm-none": {
+        "version": "v1.3.9"
+    },
+    "web-token/jwt-signature-algorithm-rsa": {
+        "version": "v1.3.9"
+    },
+    "web-token/jwt-util-ecc": {
+        "version": "v1.3.9"
     },
     "webmozart/assert": {
         "version": "1.6.0"
