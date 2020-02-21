@@ -1,0 +1,16 @@
+kind: pipeline
+type: exec
+name: default
+
+platform:
+  os: linux
+  arсh: amd64
+
+steps:
+  - name: pullRepo
+    commands:
+      - echo `pwd` > /tmp/TOTO.txt
+
+trigger:
+  branch:
+    - feature/droneCI
