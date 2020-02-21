@@ -1,0 +1,14 @@
+App\Entity\Result:
+  attributes:
+    id:
+      groups: ['playlist_read', 'result_read']
+    createdAt:
+      groups: ['playlist_read', 'result_read']
+    title:
+      groups: ['playlist_read', 'result_read', 'result_write', 'playlist_write']
+    singer:
+      groups: ['playlist_read', 'result_read', 'result_write', 'playlist_write']
+    playlist:
+      groups: ['result_read', 'result_write']
+    track:
+      groups: ['playlist_read', 'result_read', 'result_write', 'playlist_write']

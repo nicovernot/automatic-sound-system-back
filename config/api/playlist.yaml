@@ -1,3 +1,13 @@
 App\Entity\Playlist:
     attributes:
         security: 'is_granted("ROLE_USER")'
+        normalization_context:
+            groups: ['playlist_read']
+        denormalization_context:
+            groups: ['playlist_write']
+    collectionOperations:
+        create:
+            method: POST
+            path: /playlists
+            controller: App\Controller\API\Playlist\PostPlaylistController
+        get: ~
