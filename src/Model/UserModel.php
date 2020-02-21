@@ -4,6 +4,8 @@
 namespace App\Model;
 
 
+use App\Entity\UserSubscription;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserModel extends AbstractUpdatableModel implements UserInterface
@@ -18,12 +20,15 @@ class UserModel extends AbstractUpdatableModel implements UserInterface
     protected $plainPassword;
     /** @var array $roles */
     protected $roles;
+    /** @var UserSubscription[] $userSubscription */
+    protected $userSubscription;
 
     public function __construct()
     {
         parent::__construct();
 
         $this->roles = ['ROLE_USER'];
+        $this->userSubscription = new ArrayCollection();
     }
 
     /**
@@ -118,4 +123,34 @@ class UserModel extends AbstractUpdatableModel implements UserInterface
 
     public function getSalt(){}
     public function eraseCredentials(){}
+
+    /**
+     * @return UserSubscription[]
+     */
+    public function getUserSubscription(): array
+    {
+        return $this->userSubscription;
+    }
+
+    public function addUserSubscription(UserSubscription $subscription): self
+    {
+        if (!$this->userSubscription->contains($subscription)) {
+            $this->userSubscription->add($subscription);
+
+            $subscription->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserSubscription(UserSubscription $subscription): self
+    {
+        if ($this->userSubscription->contains($subscription)) {
+            $this->userSubscription->removeElement($subscription);
+
+            $subscription->setUser(null);
+        }
+
+        return $this;
+    }
 }
