@@ -14,7 +14,7 @@ steps:
     commands:
       - cd /home/ec2-user/myapp/myapp
       - echo `pwd` > /tmp/TOTO.txt
-
+      - echo 'toto" 
 
 trigger:
   branch:
