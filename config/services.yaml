@@ -23,10 +23,14 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
     ### EVENT LISTENERS
     App\Event\Listener\PrePersist\:
         resource: '../src/Event/Listener/PrePersist/*'
         tags:
             - { name: doctrine.event_listener, event: prePersist }
+    App\Event\Listener\Lexik\JWTExpiredListener:
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_expired, method: handleEvent }
+    App\Event\Listener\Lexik\AuthenticationFailureListener:
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure, method: handleEvent }
