@@ -7,7 +7,7 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
+/src/Controller/.env.local
 /.idea/
 
 /config/jwt/*
