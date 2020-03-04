@@ -40,4 +40,8 @@ class Playlist extends PlaylistModel
      * @ORM\Column(type="integer")
      */
     protected $scoreMax;
+    /**
+     * @ORM\OneToMany(targetEntity="Result", mappedBy="playlist", cascade={"PERSIST"})
+     */
+    protected $results;
 }

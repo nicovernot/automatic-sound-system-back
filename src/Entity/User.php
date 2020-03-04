@@ -8,10 +8,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Model\UserModel;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity("email")
+ * @UniqueEntity("username")
  */
 class User extends UserModel
 {

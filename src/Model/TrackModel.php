@@ -6,28 +6,28 @@ namespace App\Model;
 
 class TrackModel extends AbstractModel
 {
-    /** @var null|string $YTTitle */
-    protected $YTTitle;
+    /** @var null|string $yTTitle */
+    protected $yTTitle;
     /** @var null|string $thumbnails */
     protected $thumbnails;
-    /** @var null|string $YTUrlId */
-    protected $YTUrlId;
+    /** @var null|string $yTUrlId */
+    protected $yTUrlId;
 
     /**
      * @return string|null
      */
     public function getYTTitle(): ?string
     {
-        return $this->YTTitle;
+        return $this->yTTitle;
     }
 
     /**
-     * @param string|null $YTTitle
+     * @param string|null $yTTitle
      * @return self
      */
-    public function setYTTitle(?string $YTTitle): self
+    public function setYTTitle(?string $yTTitle): self
     {
-        $this->YTTitle = $YTTitle;
+        $this->yTTitle = $yTTitle;
         return $this;
     }
 
@@ -54,16 +54,16 @@ class TrackModel extends AbstractModel
      */
     public function getYTUrlId(): ?string
     {
-        return $this->YTUrlId;
+        return $this->yTUrlId;
     }
 
     /**
-     * @param string|null $YTUrlId
+     * @param string|null $yTUrlId
      * @return self
      */
-    public function setYTUrlId(?string $YTUrlId): self
+    public function setYTUrlId(?string $yTUrlId): self
     {
-        $this->YTUrlId = $YTUrlId;
+        $this->yTUrlId = $yTUrlId;
         return $this;
     }
 }

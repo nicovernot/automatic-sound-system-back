@@ -1,3 +1,7 @@
 App\Entity\Track:
     attributes:
         security: 'is_granted("ROLE_USER")'
+        normalization_context:
+            groups: ['track_read']
+        denormalization_context:
+            groups: ['track_write']

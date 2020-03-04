@@ -1,0 +1,4 @@
+jwt:
+    expired: 'Connexion expirée ! Veuillez vous reconnecter.'
+auth:
+    failure: 'Identifiants invalides ! Veuillez vérifier votre email et votre mot de passe.'

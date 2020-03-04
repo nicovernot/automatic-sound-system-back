@@ -4,6 +4,9 @@
 namespace App\Model;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 class PlaylistModel extends AbstractModel
 {
     /** @var bool $archived */
@@ -14,12 +17,15 @@ class PlaylistModel extends AbstractModel
     protected $scoreMax;
     /** @var null|string $name */
     protected $name;
+    /** @var ResultModel[] $results */
+    protected $results;
 
     public function __construct()
     {
         parent::__construct();
 
         $this->archived = false;
+        $this->results = new ArrayCollection();
     }
 
     /**
@@ -91,6 +97,36 @@ class PlaylistModel extends AbstractModel
     public function setName(?string $name): self
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return ResultModel[]|ArrayCollection
+     */
+    public function getResults(): Collection
+    {
+        return $this->results;
+    }
+
+    public function addResult(ResultModel $resultModel): self
+    {
+        if (!$this->results->contains($resultModel)) {
+            $this->results->add($resultModel);
+
+            $resultModel->setPlaylist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResult(ResultModel $resultModel): self
+    {
+        if ($this->results->contains($resultModel)) {
+            $this->results->removeElement($resultModel);
+
+            $resultModel->setPlaylist(null);
+        }
+
         return $this;
     }
 }
