@@ -8,6 +8,8 @@
 /vendor/
 ###< symfony/framework-bundle ###
 /src/Controller/.env.local
+/src/Service/.env.local
 /.idea/
 
 /config/jwt/*
+[ec2-user@ip-172-31-92-95 myapp]$
