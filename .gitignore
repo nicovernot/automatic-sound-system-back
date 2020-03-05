@@ -8,6 +8,8 @@
 /vendor/
 ###< symfony/framework-bundle ###
 /src/Controller/.env.local
+/src/Service/.env.local
 /.idea/
 
 /config/jwt/*
+

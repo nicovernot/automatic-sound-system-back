@@ -4,13 +4,16 @@
 namespace App\Entity;
 
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Model\ScoreModel;;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\ScoreRepository")
  * @UniqueEntity(fields={"user", "playlist"})
+ * @ORM\HasLifecycleCallbacks()
  */
 class Score extends ScoreModel
 {
@@ -44,4 +47,11 @@ class Score extends ScoreModel
      * @ORM\ManyToOne(targetEntity="Playlist")
      */
     protected $playlist;
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function handleUpdate() {
+        $this->setUpdatedAt(new \DateTime());
+    }
 }

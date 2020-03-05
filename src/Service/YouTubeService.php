@@ -6,6 +6,7 @@ namespace App\Service;
 
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\ResponseInterface;
+use Symfony\Component\Dotenv\Dotenv;
 
 class YouTubeService
 {
@@ -17,6 +18,9 @@ class YouTubeService
      */
     public function getPlaylistItems(string $playlistId): ResponseInterface
     {
+        $dotenv = new Dotenv();
+        $dotenv->loadEnv(__DIR__.'/.env.local');
+        $ak = $_ENV['API_KEY'];
         $client1 = HttpClient::create();
         $url = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
@@ -25,7 +29,7 @@ class YouTubeService
                 'part' => 'snippet',
                 'maxResults' => 50,
                 'playlistId' => $playlistId,
-                'key' => self::API_KEY,
+                'key' => $ak,
             ]
         ]);
 

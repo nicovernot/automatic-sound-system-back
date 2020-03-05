@@ -1,0 +1,12 @@
+App\Entity\Score:
+  attributes:
+    id:
+      groups: ['score_read', 'score_write']
+    createdAt:
+      groups: ['score_read']
+    updatedAt:
+      groups: ['score_read']
+    scoreMax:
+      groups: ['score_read', 'score_write']
+    gameCount:
+      groups: ['score_read']

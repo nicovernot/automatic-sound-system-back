@@ -1,0 +1,12 @@
+App\Entity\Score:
+    attributes:
+        security: 'is_granted("ROLE_USER")'
+        normalization_context:
+            groups: ['score_read']
+        denormalization_context:
+            groups: ['score_write']
+    collectionOperations:
+        create:
+            method: POST
+            path: /playlists/{id}/scores
+            controller: App\Controller\API\Score\PostScoreController
