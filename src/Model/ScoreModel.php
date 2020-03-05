@@ -93,4 +93,10 @@ class ScoreModel extends AbstractUpdatableModel
         $this->gameCount = $gameCount;
         return $this;
     }
+
+    public function incrementGameCount(): self
+    {
+        $gameCount = $this->gameCount ?? 0;
+        return $this->setGameCount($gameCount + 1);
+    }
 }
